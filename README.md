@@ -15,9 +15,11 @@ yarn
 
 ## Create GraphQL server
 
-    ```bash
-    yarn add express express-graphql graphql --save
-    ```
+```bash	
+yarn add express express-graphql graphql --save
+```
+
+
 Inside your server.js add:
 
 ```python
