@@ -1,14 +1,13 @@
-FROM node:16-buster
+FROM node:16.16.0
 
-WORKDIR /app
+WORKDIR /server
 
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+COPY package.json /package.json
 
-RUN npm ci
+RUN yarn 
 
-COPY . /app
+COPY . /server
 
-EXPOSE 3000
+EXPOSE 8080
 
-CMD [ "npm", "run", "start" ]
+CMD ["yarn", "start"]

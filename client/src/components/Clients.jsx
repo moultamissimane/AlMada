@@ -2,7 +2,9 @@ import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import ClientRow from "./ClientRow";
 import { GET_CLIENTS } from "../queries/clientQueries";
-import Spinner from "./Spinner"; 
+import Spinner from "./Spinner";
+import AddClientModal from "./AddClientModal";
+
 const Clients = () => {
   const { data, loading, error } = useQuery(GET_CLIENTS);
 
@@ -12,6 +14,7 @@ const Clients = () => {
     <>
       {!loading && !error && (
         <div className="container py-2 inline-block min-w-full ">
+          <AddClientModal />
           <table className="container min-w-full">
             <thead className="bg-gray-600">
               <tr>
