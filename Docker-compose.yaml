@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+# frontend
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    # container_name: almada
+    networks:
+      - mern-stack-net
+    volumes:
+      - ./client/src:/src/app
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    # container_name: almada
+    networks:
+      - mern-stack-net
+    volumes:
+      - ./server/src:/usr/app/src
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: "mongo"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
