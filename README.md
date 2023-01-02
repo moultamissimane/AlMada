@@ -10,7 +10,31 @@ Use the package manager [yarn](https://yarnpkg.com/) to install AlMada.
 yarn
 ```
 
-## Create Docker file
+## Create Docker file for node js
+    
+    ```bash
+    touch Dockerfile
+    ```
+
+Inside your Dockerfile add:
+    
+    ```python
+    <!-- # FROM: install the image of the Node.js version. -->
+    FROM node:16.16.0-alpine
+    <!-- # WORKDIR: path of the working directory. -->
+    WORKDIR /app
+    <!-- # COPY: copy the package.json file to the working directory. -->
+    COPY package.json .
+    <!-- # RUN: install the dependencies. -->
+    RUN yarn
+    <!-- # COPY: copy the rest of the files to the working directory. -->
+    COPY . .
+    <!-- # EXPOSE: expose the port 3000. -->
+    EXPOSE 8080
+    <!-- # CMD: run the command to start the server. -->
+    CMD ["yarn", "start"]
+    ```
+
 
 
 ## Create GraphQL server
