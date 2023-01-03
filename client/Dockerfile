@@ -1,15 +1,16 @@
 # ==== CONFIGURE =====
 # Use a Node 16 base image
-FROM node:16-alpine 
+FROM node:16.16.0-alpine 
 # Set the working directory to /app inside the container
 WORKDIR /client
 # Copy app files
-COPY . .
+COPY package.json ./
+COPY vite.config.js ./
 # ==== BUILD =====
-# Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
+# Install dependencies 
 RUN yarn
 # Build the app
-RUN yarn start
+
 # ==== RUN =======
 # Set the env to "production"
 ENV NODE_ENV production
